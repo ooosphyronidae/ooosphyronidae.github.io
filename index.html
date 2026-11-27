@@ -1,11 +1,176 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>김예원 | Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>김예원 | Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0f1f4b;
+    --navy-deep: #0a1536;
+    --navy-soft: #1b2f6b;
+    --yellow: #ffd23f;
+    --text: #eef1fa;
+    --muted: #b4bddb;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--navy);
+    color: var(--text);
+    font-family: "Noto Sans KR", sans-serif;
+    line-height: 1.8;
+    font-size: 17px;
+  }
+  a { color: inherit; }
+  a:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+  nav { padding: 22px 0; }
+  nav .wrap { display: flex; gap: 24px; justify-content: flex-end; }
+  nav a { text-decoration: none; color: var(--muted); font-size: 15px; }
+  nav a:hover { color: var(--yellow); }
+
+  .hero { padding: 72px 0 96px; }
+  .hero h1 {
+    font-family: "Black Han Sans", sans-serif;
+    font-weight: 400;
+    color: var(--yellow);
+    font-size: clamp(56px, 13vw, 128px);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+  }
+  .hero p.lead {
+    margin-top: 28px;
+    max-width: 30em;
+    font-size: clamp(19px, 2.6vw, 24px);
+    line-height: 1.6;
+  }
+  .hero p.sub { margin-top: 16px; color: var(--muted); }
+
+  section { padding: 64px 0; border-top: 1px solid var(--navy-soft); }
+  h2 {
+    font-family: "Black Han Sans", sans-serif;
+    font-weight: 400;
+    font-size: 32px;
+    color: var(--yellow);
+    margin-bottom: 28px;
+  }
+  .about-list { list-style: none; display: grid; gap: 18px; }
+  .about-list li { padding-left: 20px; border-left: 4px solid var(--yellow); }
+  .about-list b { display: block; font-weight: 700; }
+  .about-list span { color: var(--muted); }
+
+  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 40px; }
+  h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; }
+  .tags li {
+    background: var(--navy-soft);
+    padding: 4px 14px;
+    border-radius: 999px;
+    font-size: 15px;
+  }
+
+  .project {
+    background: var(--navy-deep);
+    border: 1px solid var(--navy-soft);
+    border-left: 6px solid var(--yellow);
+    padding: 24px 28px;
+  }
+  .project p { color: var(--muted); margin-top: 6px; }
+
+  .contact { background: var(--yellow); color: var(--navy); border-top: none; }
+  .contact h2 { color: var(--navy); }
+  .contact p { margin-bottom: 18px; }
+  .contact a { font-weight: 700; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+  .contact a:focus-visible { outline-color: var(--navy); }
+
+  footer { padding: 28px 0; color: var(--muted); font-size: 14px; }
+</style>
 </head>
 <body>
-  <h1>김예원의 포트폴리오</h1>
-  <p>페이지 준비 중입니다.</p>
+
+<nav>
+  <div class="wrap">
+    <a href="#about">소개</a>
+    <a href="#learning">공부 중</a>
+    <a href="#projects">프로젝트</a>
+    <a href="#contact">연락</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>김예원</h1>
+    <p class="lead">기획의 언어와 개발의 언어를 모두 이해하는 테크 기반 콘텐츠 기획자를 목표로 합니다.</p>
+    <p class="sub">한국외국어대학교 컴퓨터공학부 · 문화콘텐츠 이중전공</p>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <h2>소개</h2>
+    <ul class="about-list">
+      <li><b>전공</b><span>컴퓨터공학(주전공)과 문화콘텐츠(이중전공)를 함께 공부하고 있어요.</span></li>
+      <li><b>희망 직무</b><span>IT·엔터 서비스 기획자 (PO/PM)</span></li>
+      <li><b>강점</b><span>아이디어를 앱·웹 같은 실제 프로덕트로 구현하는 융합형 기획</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="learning">
+  <div class="wrap">
+    <h2>공부 중인 것</h2>
+    <div class="cols">
+      <div>
+        <h3>컴퓨터공학</h3>
+        <ul class="tags">
+          <li>Python</li><li>기계학습</li><li>알고리즘</li><li>HTML/CSS/JavaScript</li><li>객체지향프로그래밍</li>
+        </ul>
+      </div>
+      <div>
+        <h3>문화콘텐츠</h3>
+        <ul class="tags">
+          <li>축제와 문화콘텐츠</li><li>팬덤·트렌드 분석</li><li>스토리텔링</li>
+        </ul>
+      </div>
+      <div>
+        <h3>관심사</h3>
+        <ul class="tags">
+          <li>UI/UX 디자인</li><li>영상 편집</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <h2>프로젝트</h2>
+    <div class="project">
+      <h3>GitHub Pages 포트폴리오</h3>
+      <p>지금 보고 있는 이 페이지예요. 앞으로 만드는 프로젝트를 여기에 차곡차곡 추가할 예정입니다.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <h2>같이 이야기해요</h2>
+    <p>서비스 기획과 개발을 함께하는 사이드 프로젝트, 공모전을 찾고 있어요.</p>
+    <p>
+      <a href="mailto:ysahi1@hufs.ac.kr">ysahi1@hufs.ac.kr</a><br>
+      <a href="https://github.com/ooosphyronidae">github.com/ooosphyronidae</a>
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 김예원</div>
+</footer>
+
 </body>
 </html>
