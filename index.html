@@ -6,171 +6,238 @@
 <title>김예원 | Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #0f1f4b;
-    --navy-deep: #0a1536;
-    --navy-soft: #1b2f6b;
-    --yellow: #ffd23f;
+    --bg: #0f1f4b;
+    --panel: #0a1536;
+    --line: #1b2f6b;
+    --accent: #ffd23f;
     --text: #eef1fa;
     --muted: #b4bddb;
   }
+  body.on-contact {
+    --bg: #ffd23f;
+    --panel: #ffe27d;
+    --line: #0f1f4b;
+    --accent: #0f1f4b;
+    --text: #0f1f4b;
+    --muted: #2b3a6b;
+  }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+  html, body { height: 100%; }
   body {
-    background: var(--navy);
+    background: var(--bg);
     color: var(--text);
     font-family: "Noto Sans KR", sans-serif;
     line-height: 1.8;
     font-size: 17px;
+    display: flex;
+    flex-direction: column;
+    transition: background .3s, color .3s;
   }
   a { color: inherit; }
-  a:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
-  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+  .wrap { max-width: 880px; width: 100%; margin: 0 auto; padding: 0 24px; }
 
-  nav { padding: 22px 0; }
-  nav .wrap { display: flex; gap: 24px; justify-content: flex-end; }
-  nav a { text-decoration: none; color: var(--muted); font-size: 15px; }
-  nav a:hover { color: var(--yellow); }
-
-  .hero { padding: 72px 0 96px; }
-  .hero h1 {
-    font-family: "Black Han Sans", sans-serif;
-    font-weight: 400;
-    color: var(--yellow);
-    font-size: clamp(56px, 13vw, 128px);
-    line-height: 1.05;
-    letter-spacing: -0.01em;
+  nav { padding: 20px 0; }
+  nav .wrap { display: flex; gap: 6px; justify-content: flex-end; flex-wrap: wrap; }
+  nav button {
+    background: none; border: 0; cursor: pointer;
+    color: var(--muted); font: inherit; font-size: 15px;
+    padding: 4px 12px; border-radius: 999px;
   }
-  .hero p.lead {
-    margin-top: 28px;
-    max-width: 30em;
-    font-size: clamp(19px, 2.6vw, 24px);
-    line-height: 1.6;
-  }
-  .hero p.sub { margin-top: 16px; color: var(--muted); }
+  nav button:hover { color: var(--accent); }
+  nav button[aria-current="page"] { color: var(--accent); font-weight: 900; background: var(--line); }
 
-  section { padding: 64px 0; border-top: 1px solid var(--navy-soft); }
+  main { flex: 1; display: flex; align-items: center; padding: 16px 0 32px; }
+  .page { display: none; width: 100%; }
+  .page.active { display: block; animation: fade .35s ease; }
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+  .accent { color: var(--accent); font-weight: 900; }
+  h1 {
+    color: var(--accent); font-weight: 900;
+    font-size: clamp(60px, 14vw, 132px);
+    line-height: 1.05; letter-spacing: -0.02em;
+  }
   h2 {
-    font-family: "Black Han Sans", sans-serif;
-    font-weight: 400;
-    font-size: 32px;
-    color: var(--yellow);
+    color: var(--accent); font-weight: 900;
+    font-size: clamp(30px, 6vw, 40px);
     margin-bottom: 28px;
   }
+  h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+  .lead { margin-top: 28px; max-width: 30em; font-size: clamp(19px, 2.6vw, 24px); line-height: 1.6; }
+  .sub { margin-top: 16px; color: var(--muted); }
+  .start {
+    margin-top: 36px; background: var(--accent); color: var(--bg);
+    border: 0; font: inherit; font-weight: 900; font-size: 17px;
+    padding: 12px 28px; border-radius: 999px; cursor: pointer;
+  }
+
   .about-list { list-style: none; display: grid; gap: 18px; }
-  .about-list li { padding-left: 20px; border-left: 4px solid var(--yellow); }
-  .about-list b { display: block; font-weight: 700; }
+  .about-list li { padding-left: 20px; border-left: 4px solid var(--accent); }
+  .about-list b { display: block; font-weight: 900; color: var(--accent); }
   .about-list span { color: var(--muted); }
 
-  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 40px; }
-  h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 36px; }
+  .cols h3 { color: var(--accent); font-weight: 900; }
   .tags { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; }
-  .tags li {
-    background: var(--navy-soft);
-    padding: 4px 14px;
-    border-radius: 999px;
-    font-size: 15px;
-  }
+  .tags li { background: var(--line); padding: 4px 14px; border-radius: 999px; font-size: 15px; }
 
   .project {
-    background: var(--navy-deep);
-    border: 1px solid var(--navy-soft);
-    border-left: 6px solid var(--yellow);
-    padding: 24px 28px;
+    background: var(--panel); border: 1px solid var(--line);
+    border-left: 6px solid var(--accent); padding: 24px 28px;
   }
+  .project h3 { color: var(--accent); font-weight: 900; }
   .project p { color: var(--muted); margin-top: 6px; }
 
-  .contact { background: var(--yellow); color: var(--navy); border-top: none; }
-  .contact h2 { color: var(--navy); }
-  .contact p { margin-bottom: 18px; }
-  .contact a { font-weight: 700; text-decoration-thickness: 2px; text-underline-offset: 4px; }
-  .contact a:focus-visible { outline-color: var(--navy); }
+  .contact-links a { font-weight: 900; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+  .contact-links { margin-top: 18px; }
 
-  footer { padding: 28px 0; color: var(--muted); font-size: 14px; }
+  .pager { padding: 18px 0 28px; }
+  .pager .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .pager button {
+    background: none; color: var(--accent); border: 2px solid var(--accent);
+    font: inherit; font-weight: 900; font-size: 15px;
+    padding: 8px 20px; border-radius: 999px; cursor: pointer; min-width: 110px;
+  }
+  .pager button:hover:not(:disabled) { background: var(--accent); color: var(--bg); }
+  .pager button:disabled { opacity: .3; cursor: default; }
+  .dots { display: flex; gap: 8px; }
+  .dots span { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
+  .dots span.on { background: var(--accent); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .page.active { animation: none; }
+    body { transition: none; }
+  }
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="wrap">
-    <a href="#about">소개</a>
-    <a href="#learning">공부 중</a>
-    <a href="#projects">프로젝트</a>
-    <a href="#contact">연락</a>
-  </div>
+  <div class="wrap" id="menu"></div>
 </nav>
 
-<header class="hero">
+<main>
   <div class="wrap">
-    <h1>김예원</h1>
-    <p class="lead">기획의 언어와 개발의 언어를 모두 이해하는 테크 기반 콘텐츠 기획자를 목표로 합니다.</p>
-    <p class="sub">한국외국어대학교 컴퓨터공학부 · 문화콘텐츠 이중전공</p>
-  </div>
-</header>
 
-<section id="about">
-  <div class="wrap">
-    <h2>소개</h2>
-    <ul class="about-list">
-      <li><b>전공</b><span>컴퓨터공학(주전공)과 문화콘텐츠(이중전공)를 함께 공부하고 있어요.</span></li>
-      <li><b>희망 직무</b><span>IT·엔터 서비스 기획자 (PO/PM)</span></li>
-      <li><b>강점</b><span>아이디어를 앱·웹 같은 실제 프로덕트로 구현하는 융합형 기획</span></li>
-    </ul>
-  </div>
-</section>
+    <section class="page" id="home">
+      <h1>김예원</h1>
+      <p class="lead">기획의 언어와 개발의 언어를 모두 이해하는 <span class="accent">테크 기반 콘텐츠 기획자</span>를 목표로 합니다.</p>
+      <p class="sub">한국외국어대학교 컴퓨터공학부 · 문화콘텐츠 이중전공</p>
+      <button class="start" id="start">포트폴리오 보기</button>
+    </section>
 
-<section id="learning">
-  <div class="wrap">
-    <h2>공부 중인 것</h2>
-    <div class="cols">
-      <div>
-        <h3>컴퓨터공학</h3>
-        <ul class="tags">
-          <li>Python</li><li>기계학습</li><li>알고리즘</li><li>HTML/CSS/JavaScript</li><li>객체지향프로그래밍</li>
-        </ul>
+    <section class="page" id="about">
+      <h2>소개</h2>
+      <ul class="about-list">
+        <li><b>전공</b><span>컴퓨터공학(주전공)과 문화콘텐츠(이중전공)를 함께 공부하고 있어요.</span></li>
+        <li><b>희망 직무</b><span>IT·엔터 서비스 기획자 (PO/PM)</span></li>
+        <li><b>강점</b><span>아이디어를 앱·웹 같은 실제 프로덕트로 구현하는 융합형 기획</span></li>
+      </ul>
+    </section>
+
+    <section class="page" id="learning">
+      <h2>공부 중인 것</h2>
+      <div class="cols">
+        <div>
+          <h3>컴퓨터공학</h3>
+          <ul class="tags"><li>Python</li><li>기계학습</li><li>알고리즘</li><li>HTML/CSS/JavaScript</li><li>객체지향프로그래밍</li></ul>
+        </div>
+        <div>
+          <h3>문화콘텐츠</h3>
+          <ul class="tags"><li>축제와 문화콘텐츠</li><li>팬덤·트렌드 분석</li><li>스토리텔링</li></ul>
+        </div>
+        <div>
+          <h3>관심사</h3>
+          <ul class="tags"><li>UI/UX 디자인</li><li>영상 편집</li></ul>
+        </div>
       </div>
-      <div>
-        <h3>문화콘텐츠</h3>
-        <ul class="tags">
-          <li>축제와 문화콘텐츠</li><li>팬덤·트렌드 분석</li><li>스토리텔링</li>
-        </ul>
+    </section>
+
+    <section class="page" id="projects">
+      <h2>프로젝트</h2>
+      <div class="project">
+        <h3>GitHub Pages 포트폴리오</h3>
+        <p>지금 보고 있는 이 페이지예요. 앞으로 만드는 프로젝트를 여기에 차곡차곡 추가할 예정입니다.</p>
       </div>
-      <div>
-        <h3>관심사</h3>
-        <ul class="tags">
-          <li>UI/UX 디자인</li><li>영상 편집</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section id="projects">
+    <section class="page" id="contact">
+      <h2>같이 이야기해요</h2>
+      <p>서비스 기획과 개발을 함께하는 사이드 프로젝트, 공모전을 찾고 있어요.</p>
+      <p class="contact-links">
+        <a href="mailto:ysahi1@hufs.ac.kr">ysahi1@hufs.ac.kr</a><br>
+        <a href="https://github.com/ooosphyronidae">github.com/ooosphyronidae</a>
+      </p>
+    </section>
+
+  </div>
+</main>
+
+<div class="pager">
   <div class="wrap">
-    <h2>프로젝트</h2>
-    <div class="project">
-      <h3>GitHub Pages 포트폴리오</h3>
-      <p>지금 보고 있는 이 페이지예요. 앞으로 만드는 프로젝트를 여기에 차곡차곡 추가할 예정입니다.</p>
-    </div>
+    <button id="prev">이전</button>
+    <div class="dots" id="dots" aria-hidden="true"></div>
+    <button id="next">다음</button>
   </div>
-</section>
+</div>
 
-<section id="contact" class="contact">
-  <div class="wrap">
-    <h2>같이 이야기해요</h2>
-    <p>서비스 기획과 개발을 함께하는 사이드 프로젝트, 공모전을 찾고 있어요.</p>
-    <p>
-      <a href="mailto:ysahi1@hufs.ac.kr">ysahi1@hufs.ac.kr</a><br>
-      <a href="https://github.com/ooosphyronidae">github.com/ooosphyronidae</a>
-    </p>
-  </div>
-</section>
+<script>
+  var pages = [
+    { id: "home", label: "홈" },
+    { id: "about", label: "소개" },
+    { id: "learning", label: "공부 중" },
+    { id: "projects", label: "프로젝트" },
+    { id: "contact", label: "연락" }
+  ];
+  var current = 0;
+  var menu = document.getElementById("menu");
+  var dots = document.getElementById("dots");
+  var prev = document.getElementById("prev");
+  var next = document.getElementById("next");
 
-<footer>
-  <div class="wrap">© 2026 김예원</div>
-</footer>
+  pages.forEach(function (p, i) {
+    var b = document.createElement("button");
+    b.textContent = p.label;
+    b.addEventListener("click", function () { go(i); });
+    menu.appendChild(b);
+    dots.appendChild(document.createElement("span"));
+  });
 
+  function go(i) {
+    if (i < 0 || i >= pages.length) return;
+    current = i;
+    pages.forEach(function (p, k) {
+      document.getElementById(p.id).classList.toggle("active", k === i);
+      var b = menu.children[k];
+      if (k === i) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current");
+      dots.children[k].classList.toggle("on", k === i);
+    });
+    document.body.classList.toggle("on-contact", pages[i].id === "contact");
+    prev.disabled = i === 0;
+    next.disabled = i === pages.length - 1;
+    if (location.hash !== "#" + pages[i].id) history.replaceState(null, "", "#" + pages[i].id);
+    window.scrollTo(0, 0);
+  }
+
+  function fromHash() {
+    var id = location.hash.replace("#", "");
+    var i = pages.findIndex(function (p) { return p.id === id; });
+    go(i < 0 ? 0 : i);
+  }
+
+  prev.addEventListener("click", function () { go(current - 1); });
+  next.addEventListener("click", function () { go(current + 1); });
+  document.getElementById("start").addEventListener("click", function () { go(1); });
+  window.addEventListener("hashchange", fromHash);
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowLeft") go(current - 1);
+    if (e.key === "ArrowRight") go(current + 1);
+  });
+  fromHash();
+</script>
 </body>
 </html>
